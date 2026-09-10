@@ -6,8 +6,6 @@ Anti-slop and humanizer skills audit properties of your text: banned words, sent
 
 This skill puts two simulated readers with lives in front of your draft, cold, one passage at a time, and reports what happened to them: where they leaned in, where they drifted, where they quit, what they still remembered the next morning. A skimmer says whether they would open it at all. Afterwards you can ask any reader a follow-up. Nobody rewrites anything. The draft stays yours.
 
-<!-- demo video: drag videos/first-reader-explainer/renders/video-36s.mp4 into this README on GitHub to get an inline player URL, then paste it here -->
-
 ## Install
 
 ```bash
