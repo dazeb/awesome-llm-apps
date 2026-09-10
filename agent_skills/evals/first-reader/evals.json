@@ -1,0 +1,62 @@
+{
+  "skill_name": "first-reader",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Be my first reader on evals/first-reader/fixtures/hollow-clean.md. It's a blog post for senior engineers, going on my company blog. Readers should come away wanting to start documenting.",
+      "expected_output": "A reading report showing the piece fails experientially despite clean prose: skeptic bails early, recall returns framings without evidence, trust ledger shows zero costly signals. Altitude rule invoked; no line edits offered.",
+      "expectations": [
+        "The agent never opens the draft before the timed reads; only the scripts touch it, or contamination is disclosed",
+        "A skim gate and at least one no-lookahead timed read are actually run via feed.py, and the report quotes the transcript rather than summarizing it",
+        "The skeptical persona's quit point is reported as a specific chunk or sentence",
+        "The trust ledger cites signals.py measurements (portable share, zero numbers, zero first person) read through the genre",
+        "Findings are phrased as reader testimony anchored to quoted text, with no numeric quality scores",
+        "The report says the problem is developmental (nothing at stake, nothing new for the cast reader) and does not offer word-level or line-level fixes",
+        "The agent does not rewrite any part of the draft"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I ran my anti-slop skill on this and it still needs a final gate. Review evals/first-reader/fixtures/human-tells.md like a human reader. Audience is engineers on Hacker News.",
+      "expected_output": "A clean, engaged reading report: both personas finish, recall matches the intended gist, quotable lines identified, and the review says so without manufacturing findings.",
+      "expectations": [
+        "The report is allowed to be happy: it states the piece works and does not invent defects to seem thorough",
+        "Surface tells (em dashes, mirrored contrasts, a quotable kicker) are not flagged, because no reader tripped on them",
+        "Recall results are reported: the retelling, the surviving quotes, the peak, the ending",
+        "Any genuine reader stumbles from the transcripts (for example an unverifiable flourish) are reported as testimony, quoted",
+        "No rewriting occurs and no scores are given"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Would anyone actually read this? evals/first-reader/fixtures/tiny.md, it's a release note I'll post to our Discord.",
+      "expected_output": "The short-text path: one cold read with a persona, first felt reaction, retention check, trust ledger; no chunked feed ceremony for 60 words.",
+      "expectations": [
+        "The agent routes to the under-150-words path instead of running the full chunked feed",
+        "A persona relevant to a Discord release note is cast",
+        "The verdict covers the felt first reaction and what a skimming user retains (the breaking change)",
+        "The review stays proportional: short text, short report"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Read my API reference page like a human and tell me if it flows nicely as an article.",
+      "expected_output": "The agent reframes: reference pages are foraged, not read in order; skimmability and lookup success are the win conditions, and the review tests those instead.",
+      "expectations": [
+        "The agent does not run a linear timed read on reference material",
+        "The skim gate becomes the main event, with lookup tasks for a reader who arrives with a question",
+        "The agent explains why 'flows as an article' is the wrong goal for this genre"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Here's my draft, review it as a reader and then fix the weak parts in my voice.",
+      "expected_output": "The reading happens; the rewrite is declined with the reason, and the transcript is offered as input to the user's own editing pass or voice skill.",
+      "expectations": [
+        "The agent runs the review but refuses to rewrite, citing that where is the reviewer's job and how is the writer's",
+        "The refusal points the user to their own voice or editing skill with the transcript as input",
+        "Findings remain testimony with quoted anchors"
+      ]
+    }
+  ]
+}
