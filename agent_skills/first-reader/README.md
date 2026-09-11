@@ -49,7 +49,7 @@ your drafts so every run in that folder uses the same people.
 
 ## Why simulate readers
 
-Text checkers measure the text. They cannot measure what a reader
+AI slop skills measure the text. They cannot measure what a reader
 experiences, and research on detecting hollow writing shows that the
 people who spot it reliably are judging what a piece commits to and what
 it leaves in memory, not counting words. So this skill measures the
