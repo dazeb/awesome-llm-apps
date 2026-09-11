@@ -2,9 +2,7 @@
 
 Readers before you publish.
 
-Anti-slop and humanizer skills audit properties of your text: banned words, sentence shapes, em dashes. None of them can tell you the thing that decides whether a piece works, which is what happens to a person reading it. A reader skims the headline and decides in two seconds. A reader gets to passage four, drifts, and leaves without ever seeing your best paragraph. A reader finishes and remembers one line the next day, or none.
-
-This skill puts two simulated readers with lives in front of your draft, cold, one passage at a time, and reports what happened to them: where they leaned in, where they drifted, where they quit, what they still remembered the next morning. A skimmer says whether they would open it at all. Afterwards you can ask any reader a follow-up. Nobody rewrites anything. The draft stays yours.
+Most writing checkers look at the text itself: banned words, sentence length, em dashes. They cannot tell you whether a real person would keep reading. This skill simulates two readers going through your draft one passage at a time and reports what happened to them: where they got interested, where they lost interest, where they stopped, and what they still remembered the next day. A third reader only skims the piece and says whether they would have opened it at all. When the run is done you can ask any of the readers follow-up questions. The skill never rewrites your text.
 
 ## Install
 
@@ -14,51 +12,54 @@ npx skills add https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_
 
 The [skills CLI](https://skills.sh) installs the folder for compatible
 coding agents. You can also copy this directory into an agent's skills
-directory. Everything inside is Markdown and stdlib Python: offline, no
-dependencies, nothing leaves your machine.
+directory. Everything inside is Markdown and stdlib Python. It runs
+offline, has no dependencies, and sends nothing off your machine.
 
 ## Use
 
-Point your agent at a draft, or paste it:
+Point your agent at a draft file, or paste the draft, and say who it is for:
 
 > review this, it's a launch post for backend engineers on our blog
 
-The agent goes quiet for a few minutes, then tells you what a friend would
-after reading: whether the skimmer opened it, where each reader leaned in
-or left, what stuck with them, and one question back to you. It also gives
-you a page: your draft with the readers' comments beside every passage,
-the skimmer's verdict, and a strip showing attention passage by passage.
+A few minutes later the agent reports back in plain language: whether the
+skimmer opened it, where each reader got interested or stopped, what they
+remembered, and one question for you. It also builds a page that shows
+your draft with the readers' comments next to each passage, the skimmer's
+verdict, and a strip that shows how attention changed from passage to
+passage.
 
-Then keep talking to the readers:
+After the run you can keep asking:
 
-- **"ask S what would have kept her past passage 4"**: she answers from
-  her own reading log, in her voice, and never proposes a rewrite.
-- **"again"** after you revise in your own editor: same readers, fresh
-  minds, and the page draws last read's attention strip above this one.
-- **"quick read"**: sixty seconds, one skeptical skimmer, two sentences.
+- **"ask S what would have kept her past passage 4"**: S answers from her
+  own notes, in her own words. She will tell you what was missing, but she
+  will not write it for you.
+- **"again"**, after you have revised the draft in your editor: the same
+  readers read it fresh, and the page shows the previous run's attention
+  strip above the new one so you can see what changed.
+- **"quick read"**: only the skimmer runs. You get two sentences on whether
+  they would open it and why.
 
-Say who the piece is for in the first sentence and the readers are cast
-from that. Describe them as people rather than job titles ("a staff
-engineer who has built three eval harnesses and wants a reason to stop")
-and the readings get sharper. Save them once in `.first-reader/audience.json`
-beside your drafts and every read in that folder uses the same two
-people, so "S" means the same person next month.
+The readers are cast from the audience you name in the first sentence.
+Describing them as people works better than job titles, for example "a
+staff engineer who has built three eval harnesses and wants a reason to
+stop". You can save your readers in `.first-reader/audience.json` next to
+your drafts so every run in that folder uses the same people.
 
-## Why readers instead of rules
+## Why simulate readers
 
-- A text scanner can only measure the text. Every word-level rule has
-  been shown to be a weak signal of whether writing is hollow, while the
-  people who spot hollow writing near-perfectly judge what a piece
-  commits to, risks, and leaves in memory. That is an experience, so
-  this skill simulates the experience.
-- The readers cannot cheat. A served feed reveals one passage at a time
-  and refuses to advance faster than a person could read, so a reader
-  never sees what is below the line they quit at.
-- Memory is measured, not asserted. The next-day quiz is answered from
-  the reader's log alone, never from a fresh look at the text.
-- The readers stay out of your chair. They say what happened to them and
-  what would have had to be true for it to go differently. Every decision
-  about the text is yours.
+Text checkers measure the text. They cannot measure what a reader
+experiences, and research on detecting hollow writing shows that the
+people who spot it reliably are judging what a piece commits to and what
+it leaves in memory, not counting words. So this skill measures the
+experience instead.
+
+Three rules keep the simulation honest. The draft is served one passage at
+a time, and the feed will not advance faster than a person could read, so
+a reader who quits at passage four has never seen passage five. The memory
+test is answered from the reader's own notes, never from a second look at
+the text. And the readers only report what happened to them and what would
+have had to be different for them to keep going; every decision about the
+draft stays with you.
 
 ## Verify
 
@@ -66,15 +67,15 @@ people, so "S" means the same person next month.
 python3 agent_skills/evals/first-reader/test_first_reader.py
 ```
 
-The eval builds temporary drafts and checks the scanner view, the served
-feed (no text on disk, dwell enforcement, per-reader tokens), recall
-bundles, the trust ledger, the reader consult, and the page. The
-behavior spec lives in
-[`agent_skills/evals/first-reader/`](../evals/first-reader/): run each
+The test builds temporary drafts and checks each part of the skill: the
+skim view, the served feed (no text written to disk, reading speed
+enforced, one token per reader), the memory quiz, the trust signals, the
+reader consult, and the page. The behavior spec is in
+[`agent_skills/evals/first-reader/`](../evals/first-reader/). Run each
 prompt in `evals.json` in a fresh session with the skill installed and
-check the listed expectations; `trigger-cases.json` covers when the skill
-must and must not fire. The development ledger there records six rounds
-of testing, including five consecutive reads of one real essay.
+check the listed expectations. `trigger-cases.json` lists when the skill
+should and should not fire. The ledger in the same folder records how the
+skill was tested, including five consecutive reads of one real essay.
 
 ## Files
 
