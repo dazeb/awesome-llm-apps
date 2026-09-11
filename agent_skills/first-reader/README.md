@@ -2,7 +2,9 @@
 
 Readers before you publish.
 
-Most writing checkers look at the text itself: banned words, sentence length, em dashes. They cannot tell you whether a real person would keep reading. This skill simulates two readers going through your draft one passage at a time and reports what happened to them: where they got interested, where they lost interest, where they stopped, and what they still remembered the next day. A third reader only skims the piece and says whether they would have opened it at all. When the run is done you can ask any of the readers follow-up questions. The skill never rewrites your text.
+Most AI slop skills look at the text itself: banned words, sentence length, em dashes. They cannot tell you whether a real person would keep reading.
+
+This skill simulates two readers going through your draft one passage at a time and reports what happened to them: where they got interested, where they lost interest, where they stopped, and what they still remembered the next day. A third reader only skims the piece and says whether they would have opened it at all. When the run is done you can ask any of the readers follow-up questions. The skill never rewrites your text.
 
 ## Install
 
