@@ -75,9 +75,8 @@ the marketing middle displaced the two questions it needed answered (diff
 noise, write-endpoint replay). The instrument reconstructed ground truth
 it never saw.
 
-The full run completed with five subagent readers and no solo fallback;
-the finished report is archived as `sample-report-retracer.md` beside the
-draft (`fixtures/retracer-launch.md`). Its sharpest findings: both
+The full run completed with five subagent readers and no solo fallback.
+Its sharpest findings: both
 personas and the skim scanner broke at the same sentence ("But Retracer
 is more than a replay tool."), the recall agents reproduced the marketing
 lines verbatim as the moment the voice changed, and the implied-author
